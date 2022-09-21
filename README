@@ -1,5 +1,5 @@
 Introduction and Data
-
+ 
 In this project, I used FRED data on different quartely interest rates in an attempt to predict recessions on a randomly selected test dataset, with data pulled from 1972 to the first quarter of 2022. Because I'm using quarterly data over the previous 3 quarters to predict the next, my total model sample size is 197 instances. If you want to see the particular interest rates pulled, it is the first seven codes in the variable codes in the notebook, the last code is the binary recession indicator. Also, I used the percent change in interest rates rather than interest rates themselves, as I felt it accounted for more changes in economic circumstances throughout the economic history of the last 50 years.
 
 Model Design
