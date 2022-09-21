@@ -1,0 +1,20 @@
+Introduction and Data
+
+In this project, I used FRED data on different quartely interest rates in an attempt to predict recessions on a randomly selected test dataset, with data pulled from 1972 to the first quarter of 2022. Because I'm using quarterly data over the previous 3 quarters to predict the next, my total model sample size is 197 instances. If you want to see the particular interest rates pulled, it is the first seven codes in the variable codes in the notebook, the last code is the binary recession indicator. Also, I used the percent change in interest rates rather than interest rates themselves, as I felt it accounted for more changes in economic circumstances throughout the economic history of the last 50 years.
+
+Model Design
+
+I used decision trees for the model, and used ada in sklearn to boost them. Furthermore, I iterated over the models to create an ensemble and aggregated their projections in order to stabilize the model, given a small input dataset to work with of 197 instances, 21 variables for each instance, each of the 7 codes over the previous 3 quarters.
+
+I tried both regression decision trees boosted by ada and classification decision trees boosted by ada, iterated over each randomly initially oriented model 3000 times, and combined the 3000 predictions for each test datapoint by summing the 3000 values for each predicted point and dividing by 3000, in order to produce an aggregation of predictions for any given point from the 1000 models to ensemble. 
+
+Due to the nature of the problem, recession risk, I assumed that in a majority of use cases, those acting on the predictions were risk-averse, and the danger of a false negative was significantly greater than that of a false positive. My thought process was, if you're a bank or a business debating how to expend capital, avoiding riskier assets in a period of economic growth for safer assets (acting on a false positive) can still generate profits in periods of economic growth, just moderated profits. But, if you invest in riskier assets and the economic enters an unexpected slump (false negative), the loss incurred by the fall of these risky assets could destabilize the business as a whole, for example looking at banks in the recession of 2009. So, I assumed that the danger of a false negative was significantly greater. In turn, I biased the model significantly towards risk aversion, by making any aggregated prediction over .4 assume a recession, and any value below assume that a recession is not a risk.
+
+Conclusion - Good and Bad
+
+Overall, I think I was pretty happy with the results. Considering that I limited myself to only 7 interest rate categories, I thought the basic predictability was good. In the future, I'd definitely expand significantly the amount of variables collected and include other economic categories as well. To be honest, I probably would use another model as well, as decision trees don't seem the most suitable to this problem, but I just wanted to test out decision trees and get a feel for them with an interesting dataset and applicable problem. They did a decent job, and combined with more data and maybe even an ensemble with more diverse models, could definitely be pretty effective in predicting recession risk.
+
+
+
+
+
